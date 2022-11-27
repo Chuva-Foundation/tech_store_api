@@ -5,10 +5,14 @@ module.exports = async (req, res, next) => {
     const authToken = req.headers.authorization;
 
 
-    const token = authToken.split(' ');
+    let token =  '';
+
+    if (authToken) {
+        token = authToken.split(' ')
+    }
 
 
-    jwt.verify(token[1], "bbef357897e532a60da4830fac13623e", function (err, decoded) {
+    jwt.verify(token[1], process.env.TOKEN, function (err, decoded) {
         
         if (err) {
             return res.status(401).json({

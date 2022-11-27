@@ -29,10 +29,10 @@ class User {
 
     
 
-    static async create_user(name, username, email, password, birth, gender) {
+    static async create_user(name, username, email, password, birth, gender, is_admin) {
         try {
             const password_hash = await bcrypt.hash(password, 8);
-          const user = await pool.query("INSERT INTO users (name, username, email, password, birth, gender) VALUES($1, $2, $3, $4, $5, $6) RETURNING *", [name, username, email, password_hash, birth, gender]);
+          const user = await pool.query("INSERT INTO users (name, username, email, password, birth, gender, is_admin) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *", [name, username, email, password_hash, birth, gender, is_admin]);
           return user.rows[0]  
         } catch (error) {
             console.error(error.message);

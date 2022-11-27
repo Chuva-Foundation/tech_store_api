@@ -17,12 +17,12 @@ CREATE TABLE Users (
 
 CREATE TABLE Categories (
     id SERIAL PRIMARY KEY, 
-    Name TEXT NOT NULL 
+    Name TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE Products (
     id SERIAL PRIMARY KEY, 
-    Name TEXT NOT NULL,
+    Name TEXT NOT NULL UNIQUE,
     Price INTEGER,
     Categories_id INTEGER ,
     IsActive BOOLEAN NOT NULL
@@ -35,7 +35,8 @@ alter table Products
 
 CREATE TABLE Orders (
     id SERIAL PRIMARY KEY, 
-    Name TEXT NOT NULL 
+    Name TEXT NOT NULL,
+    DATE integer
 );
 
 CREATE TABLE Cart (
@@ -68,3 +69,23 @@ alter table Phones
     add constraint fk_Phones_Users
     foreign key (Users_id) 
     REFERENCES Users (id);
+
+
+CREATE TABLE Products_Ordered 
+( 
+  id SERIAL PRIMARY KEY,
+  order_id integer,
+  products_id integer,
+  quantity integer,
+  price integer
+);
+
+alter table Products_Ordered 
+    add constraint fk_products_ordered_orders
+    foreign key (Order_id) 
+    REFERENCES Orders (id);
+
+alter table Products_Ordered 
+    add constraint fk_products_ordered_products
+    foreign key (products_id) 
+    REFERENCES Products (id);
