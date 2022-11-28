@@ -35,7 +35,7 @@ alter table Products
 
 CREATE TABLE Orders (
     id SERIAL PRIMARY KEY, 
-    Name TEXT NOT NULL,
+    Name TEXT NOT NULL UNIQUE,
     DATE integer
 );
 

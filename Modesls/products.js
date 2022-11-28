@@ -35,7 +35,7 @@ class Products {
     static async get_all() {
         try {
             const products = await pool.query("SELECT * FROM products");
-            return products.rows[0];
+            return products.rows;
         } catch (error) {
             console.error(error.message);
         }

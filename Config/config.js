@@ -9,11 +9,6 @@ const pool = new Pool({
   port: process.env.PORT,
   database: process.env.DATABASE
 
-  // user: "postgres",
-  // password: "12345678",
-  // host: "localhost",
-  // port: "5432",
-  // database: "labomovel_db"
 })
 
 module.exports = pool;

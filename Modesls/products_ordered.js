@@ -1,20 +1,29 @@
-const Orders = require('../../Modesls/orders');
-const Products = require('../../Modesls/orders');
+const { Pool } = require("pg");
+const pool = require("../Config/config");
 
 
-const get_orders = async (req, res) => { 
-    const orders = await Orders.get_orders();
-    res.json(orders);
+class Ordered {
 
-}
+    static async create_ordered (orders_id, products_id, quantity, price) {
 
-const create_order = async (req, res) => {
+        try {
+             const ordered = await pool.query("INSERT INTO orders (orders_id, products_id, quantity, price) VALUES ($1, $2, $3, $4) RETURNING *", [orders_id, products_id, quantity, price]);
+            return ordered.rows[0];
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    
+    static async get_ordered(orders_id) {
+        try {
+            const ordered = await pool.query("SELECT FROM orders WHERE orders_id = $1", [orders_id]);
+            return ordered.rows[0];
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
 
-    const { name } = req.body;
 
-   const orders = await Orders.create_order(name);    
-   res.status(201).json({sucess: true ,orders: orders});
-}
+ }
 
-
-module.exports = { create_order, get_orders }
+module.exports = Ordered;

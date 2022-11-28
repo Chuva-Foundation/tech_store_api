@@ -1,9 +1,22 @@
 const User = require('../../Modesls/users');
 
 
-const get_info = async (req, res) => { 
+const get_byId = async (req, res) => { 
     const {user_id} = req
     const user = await User.get_byId(user_id);
+    res.json(user);
+
+}
+const get_allusers = async (req, res) => { 
+    const {users} = req
+    const allusers = await User.get_allusers(users);
+    res.json(allusers);
+
+}
+
+const get_byEmail = async (req, res) => { 
+    const {user_id} = req
+    const user = await User.get_byEmail(user_id);
     res.json(user);
 
 }
@@ -46,4 +59,4 @@ const delete_user = async (req, res) => {
     res.json({sucess: true, msg: "user Deleted", user} ) 
 }
 
-module.exports = { create_user, get_info, update_user, delete_user }
+module.exports = { create_user, get_byId, get_byEmail, get_allusers, update_user, delete_user }

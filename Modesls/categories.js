@@ -16,7 +16,7 @@ class Categories {
     static async get_categories() {
         try {
             const categories = await pool.query("SELECT * FROM categories");
-            return categories.rows[0];
+            return categories.rows;
         } catch (error) {
             console.error(error.message);
         }

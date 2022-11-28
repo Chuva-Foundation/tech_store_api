@@ -4,7 +4,15 @@ const bcrypt = require('bcrypt');
 
 class User {
 
-    
+    static async get_allusers() {
+        try {
+            const user = await pool.query("SELECT * FROM users");
+            return user.rows;
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
     static async get_byId(id) {
         try {
             const user = await pool.query("SELECT * FROM users WHERE id = $1",[id]);
