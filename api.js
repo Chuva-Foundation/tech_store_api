@@ -38,7 +38,7 @@ app.get("/user", user_controller.get_allusers);
 app.put("/user", user_controller.update_user);
 app.delete("/user", user_controller.delete_user);app.get("/cart", cart_controller.get_cart);
 app.get("/phones", phones_controller.get_phones);
-app.get("/orders", orders_controller.get_orders);
+app.get("/orders/id", orders_controller.get_orders);
 app.get("/orders", orders_controller.get_allorders);
 app.get("/ordered", ordered_controller.get_ordered);
 
@@ -51,6 +51,6 @@ app.post("/ordered", ordered_controller.create_ordered);
 
 
 
-app.listen(3001, () => {
-    console.log("lintenig on port 3001...")
+app.listen(3002, () => {
+    console.log("lintenig on port 3002...")
 })

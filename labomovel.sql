@@ -4,28 +4,28 @@ CREATE DATABASE labomovel_db;
 #criar tabela
 CREATE TABLE Users (
     id SERIAL PRIMARY KEY, 
-    Name TEXT NOT NULL,
-    Username TEXT NOT NULL,
-    Email TEXT NOT NULL UNIQUE,
-    Password TEXT NOT NULL,
-    Is_admin BOOLEAN NOT NULL,
-    Gender TEXT NOT NULL,
-    Birth DATE
+    name TEXT NOT NULL,
+    username TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    is_admin BOOLEAN NOT NULL,
+    gender TEXT NOT NULL,
+    birth DATE
 );
 
 
 
 CREATE TABLE Categories (
     id SERIAL PRIMARY KEY, 
-    Name TEXT NOT NULL UNIQUE
+    name TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE Products (
     id SERIAL PRIMARY KEY, 
-    Name TEXT NOT NULL UNIQUE,
-    Price INTEGER,
-    Categories_id INTEGER ,
-    IsActive BOOLEAN NOT NULL
+    ame TEXT NOT NULL UNIQUE,
+    price INTEGER,
+    categories_id INTEGER ,
+    isActive BOOLEAN NOT NULL
 );
 
 alter table Products 
@@ -35,16 +35,16 @@ alter table Products
 
 CREATE TABLE Orders (
     id SERIAL PRIMARY KEY, 
-    Name TEXT NOT NULL UNIQUE,
-    DATE integer
+    name TEXT NOT NULL UNIQUE,
+    time TEXT
 );
 
 CREATE TABLE Cart (
     id SERIAL PRIMARY KEY, 
-    Users_id INTEGER,
-    Products_id INTEGER,
-    Quantity INTEGER,
-    Price INTEGER  
+    users_id INTEGER,
+    products_id INTEGER,
+    quantity INTEGER,
+    price INTEGER  
 );
 
 alter table Cart
@@ -61,8 +61,8 @@ alter table Cart
 CREATE TABLE Phones 
 ( 
   id SERIAL PRIMARY KEY,
-  Number INTEGER,
-  Users_id integer
+  number INTEGER,
+  users_id integer
 );
 
 alter table Phones 

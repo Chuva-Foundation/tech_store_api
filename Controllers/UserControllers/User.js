@@ -1,6 +1,7 @@
 const User = require('../../Modesls/users');
 
 
+
 const get_byId = async (req, res) => { 
     const {user_id} = req
     const user = await User.get_byId(user_id);
@@ -29,10 +30,11 @@ const create_user = async (req, res) => {
     if (!(name && username && email && password )) {
         return res.status(400).json({sucess: false, error: "All required fields must be filled"});
     }
-
-    // if (email) {
-    //     res.json({sucess: false, msg: "email already exit"});
-    // }
+    const isemail = await User.get_byEmail(email)
+ 
+    if (isemail) {
+       return  res.json({sucess: false, msg: "email already exit"});
+    }
 
    const user = await User.create_user(name, username, email, password, birth, gender, is_admin);    
    res.status(201).json({sucess: true ,user: user});

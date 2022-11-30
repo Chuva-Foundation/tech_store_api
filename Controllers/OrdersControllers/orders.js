@@ -9,7 +9,7 @@ const get_allorders = async (req, res) => {
 
 
 const get_orders = async (req, res) => { 
-    const orders = await Orders.get_orders(id);
+    const orders = await Orders.get_orders();
     res.json(orders);
 
 }

@@ -23,7 +23,7 @@ const create = async (req, res) => {
    res.status(201).json(
     {
         name: user.name,
-        token: jwt.sign({id: user.id}, "bbef357897e532a60da4830fac13623e", {
+        token: jwt.sign({id: user.id}, process.env.TOKEN, {
             expiresIn: '30d'
         } )
     }
